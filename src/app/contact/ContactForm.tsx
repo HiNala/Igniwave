@@ -50,7 +50,7 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 py-12 text-center">
+      <div role="status" aria-live="polite" className="flex flex-col items-center justify-center gap-4 py-12 text-center">
         <div className="w-16 h-16 rounded-full bg-igni-sage/15 flex items-center justify-center">
           <CheckCircle size={32} className="text-igni-sage" />
         </div>

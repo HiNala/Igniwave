@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle, XCircle } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
@@ -56,11 +57,15 @@ export default function SolutionsPage() {
               <Link href="/#waitlist" className={buttonVariants({ variant: "primary", size: "md" })}>Join the Waitlist</Link>
             </AnimateIn>
             <AnimateIn delay={0.15} className="hidden lg:block">
-              <img
-                src="https://images.unsplash.com/photo-1575995872537-3793d29d972c?auto=format&fit=crop&w=800&q=80"
-                alt="Person reviewing health tracking data on smartwatch"
-                className="w-full h-64 object-cover rounded-3xl"
-              />
+              <div className="relative h-64 rounded-3xl overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1575995872537-3793d29d972c?auto=format&fit=crop&w=800&q=80"
+                  alt="Person reviewing health tracking data on smartwatch"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 0px, 40vw"
+                />
+              </div>
             </AnimateIn>
           </div>
         </Container>
@@ -71,11 +76,15 @@ export default function SolutionsPage() {
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimateIn delay={0.1} className="hidden lg:block order-last lg:order-first">
-              <img
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80"
-                alt="Clinician reviewing patient wellness report"
-                className="w-full h-64 object-cover rounded-3xl"
-              />
+              <div className="relative h-64 rounded-3xl overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80"
+                  alt="Clinician reviewing patient wellness report"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 0px, 40vw"
+                />
+              </div>
             </AnimateIn>
             <AnimateIn>
               <span className="inline-block font-sans text-sm font-semibold uppercase tracking-widest text-igni-coral mb-4">For Clinicians &amp; Care Teams</span>

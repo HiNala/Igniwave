@@ -1,3 +1,4 @@
+import Image from "next/image";
 import AnimateIn from "@/components/ui/AnimateIn";
 import Badge from "@/components/ui/Badge";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -55,10 +56,12 @@ export default function SolutionSection() {
         {/* Editorial photo strip */}
         <AnimateIn delay={0.1} className="mb-14">
           <div className="relative rounded-3xl overflow-hidden h-52 md:h-64">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=80"
               alt="Care team reviewing patient health data"
-              className="w-full h-full object-cover object-center"
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 768px) 100vw, 90vw"
             />
             <div className="absolute inset-0 bg-linear-to-r from-igni-forest/75 via-igni-forest/35 to-transparent" />
             <div className="absolute inset-0 flex items-center px-8 md:px-12">

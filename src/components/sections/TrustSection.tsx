@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import AnimateIn from "@/components/ui/AnimateIn";
 import { buttonVariants } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
@@ -39,11 +40,14 @@ export default function TrustSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
           {/* ── Left: Photo ───────────────────────────────── */}
-          <AnimateIn className="relative">
-            <img
+          <AnimateIn>
+            <div className="relative h-[500px] rounded-3xl overflow-hidden">
+            <Image
               src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80"
               alt="Person reviewing wellness data"
-              className="w-full h-[500px] object-cover object-top rounded-3xl"
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             {/* Pull-quote overlay card at bottom of photo */}
             <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-igni-forest/88 backdrop-blur-sm px-5 py-4">
@@ -51,6 +55,7 @@ export default function TrustSection() {
                 &ldquo;My doctor finally understood what my week actually looked like — not just how I felt in the room.&rdquo;
               </p>
               <p className="font-sans text-xs text-white/45 mt-2">— Early access member</p>
+            </div>
             </div>
           </AnimateIn>
 

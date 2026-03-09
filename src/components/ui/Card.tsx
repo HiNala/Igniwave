@@ -4,10 +4,10 @@ import { cn } from "@/lib/utils";
 export type CardVariant = "default" | "elevated" | "bordered" | "dark";
 
 const variants: Record<CardVariant, string> = {
-  default:  "bg-white rounded-2xl p-6 md:p-8",
-  elevated: "bg-white rounded-2xl p-6 md:p-8 shadow-soft",
-  bordered: "bg-white rounded-2xl p-6 md:p-8 border border-igni-charcoal/10",
-  dark:     "bg-igni-forest text-white rounded-2xl p-6 md:p-8",
+  default:  "bg-white rounded-2xl p-6 md:p-8 transition-all duration-300",
+  elevated: "bg-white rounded-2xl p-6 md:p-8 shadow-soft transition-all duration-300",
+  bordered: "bg-white rounded-2xl p-6 md:p-8 border border-igni-charcoal/10 transition-all duration-300",
+  dark:     "bg-igni-forest text-white rounded-2xl p-6 md:p-8 transition-all duration-300",
 };
 
 interface CardProps {

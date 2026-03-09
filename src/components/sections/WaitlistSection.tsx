@@ -75,7 +75,7 @@ export default function WaitlistSection() {
           {/* Form or success state */}
           {status === "success" ? (
             <AnimateIn from="none">
-              <div className="flex flex-col items-center gap-4 py-4">
+              <div role="status" aria-live="polite" className="flex flex-col items-center gap-4 py-4">
                 <div className="w-16 h-16 rounded-full bg-igni-sage/15 flex items-center justify-center">
                   <CheckCircle size={32} className="text-igni-sage" />
                 </div>

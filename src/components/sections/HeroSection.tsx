@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Lock } from "lucide-react";
 import HandDrawnUnderline from "@/components/icons/HandDrawnUnderline";
@@ -25,12 +26,13 @@ export default function HeroSection() {
 
       {/* ── Background photo ──────────────────────────── */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1920&q=80"
           alt=""
-          className="w-full h-full object-cover object-center"
-          loading="eager"
-          decoding="async"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
         />
         {/* Left-heavy gradient so text stays readable */}
         <div className="absolute inset-0 bg-linear-to-r from-igni-forest/92 via-igni-forest/65 to-igni-forest/15" />

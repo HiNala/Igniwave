@@ -9,13 +9,13 @@ const base =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-igni-coral text-white rounded-full shadow-warm hover:bg-igni-coral-dark hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0",
+    "bg-igni-coral text-white rounded-full shadow-warm hover:bg-igni-coral-dark hover:shadow-lg hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0 active:shadow-warm",
   secondary:
-    "border-2 border-igni-sage text-igni-sage rounded-full hover:bg-igni-sage hover:text-white active:scale-[0.98]",
+    "border-2 border-igni-sage text-igni-sage rounded-full hover:bg-igni-sage hover:text-white hover:scale-[1.02] active:scale-[0.98]",
   ghost:
-    "text-igni-sage hover:text-igni-forest underline-offset-4 hover:underline",
+    "text-igni-sage hover:text-igni-forest underline-offset-4 hover:underline active:opacity-70",
   outline:
-    "border border-igni-charcoal/20 text-igni-charcoal rounded-full hover:border-igni-sage hover:text-igni-sage active:scale-[0.98]",
+    "border border-igni-charcoal/20 text-igni-charcoal rounded-full hover:border-igni-sage hover:text-igni-sage hover:scale-[1.02] active:scale-[0.98]",
 };
 
 const sizes: Record<ButtonSize, string> = {
