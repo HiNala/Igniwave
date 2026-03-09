@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Lock } from "lucide-react";
+import { Lock, ChevronDown } from "lucide-react";
 import HandDrawnUnderline from "@/components/icons/HandDrawnUnderline";
 
 function fadeUp(delay: number, prefersReducedMotion: boolean | null) {
@@ -55,7 +55,7 @@ export default function HeroSection() {
           {/* Headline */}
           <motion.h1
             {...fadeUp(0.07, prefersReducedMotion)}
-            className="font-display text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.06] text-white text-balance"
+            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.06] text-white text-balance"
           >
             Wellness Intelligence,{" "}
             <span className="relative inline-block">
@@ -84,13 +84,13 @@ export default function HeroSection() {
           >
             <Link
               href="#waitlist"
-              className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-igni-coral text-white font-sans font-semibold text-base hover:bg-igni-coral/88 transition-colors duration-200 shadow-sm"
+              className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-igni-coral text-white font-sans font-semibold text-base hover:bg-igni-coral/88 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98] active:translate-y-0 transition-all duration-200 shadow-sm"
             >
               Join the Waitlist
             </Link>
             <Link
               href="#how-it-works"
-              className="inline-flex items-center justify-center px-7 py-3.5 rounded-full border border-white/30 text-white font-sans font-medium text-base hover:bg-white/10 hover:border-white/50 transition-colors duration-200"
+              className="inline-flex items-center justify-center px-7 py-3.5 rounded-full border border-white/30 text-white font-sans font-medium text-base hover:bg-white/10 hover:border-white/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
               See How It Works →
             </Link>
@@ -107,6 +107,21 @@ export default function HeroSection() {
 
         </div>
       </div>
+
+      {/* Scroll-down indicator */}
+      <motion.div
+        aria-hidden="true"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        {...fadeUp(0.55, prefersReducedMotion)}
+      >
+        <motion.div
+          animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="text-white/35"
+        >
+          <ChevronDown size={28} strokeWidth={1.5} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

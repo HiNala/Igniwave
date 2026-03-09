@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Twitter, Linkedin, Github } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { buttonVariants } from "@/components/ui/Button";
 import IgniwaveLogo from "@/components/icons/IgniwaveLogo";
 import HandDrawnHeart from "@/components/icons/HandDrawnHeart";
 
@@ -23,8 +24,27 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
 
 export default function Footer() {
   return (
-    <footer className="bg-igni-forest text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 md:py-20">
+    <footer style={{ paddingBottom: "env(safe-area-inset-bottom)" }} className="bg-igni-forest text-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-12 pb-16 md:pt-16 md:pb-20">
+
+        {/* Final CTA strip — never leave the visitor in a dead end */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 mb-12 border-b border-white/10">
+          <div>
+            <p className="font-sans font-semibold text-white text-lg leading-snug">
+              Ready to take control of your wellness data?
+            </p>
+            <p className="font-sans text-white/55 text-sm mt-1">
+              Early access opens soon — join the list and be first.
+            </p>
+          </div>
+          <Link
+            href="/#waitlist"
+            className={buttonVariants({ variant: "primary", size: "md" }) + " shrink-0"}
+          >
+            Join the Waitlist
+          </Link>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -34,12 +54,12 @@ export default function Footer() {
             <p className="text-white/60 text-sm leading-relaxed max-w-xs mb-6">
               {siteConfig.tagline}
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
               <a
                 href={siteConfig.social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-igni-mint transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igni-mint/40 rounded-sm"
+                className="w-11 h-11 flex items-center justify-center rounded-full text-white/50 hover:text-igni-mint hover:bg-white/8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igni-mint/40"
                 aria-label="Igniwave on Twitter"
               >
                 <Twitter size={18} />
@@ -48,7 +68,7 @@ export default function Footer() {
                 href={siteConfig.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-igni-mint transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igni-mint/40 rounded-sm"
+                className="w-11 h-11 flex items-center justify-center rounded-full text-white/50 hover:text-igni-mint hover:bg-white/8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igni-mint/40"
                 aria-label="Igniwave on LinkedIn"
               >
                 <Linkedin size={18} />
@@ -57,7 +77,7 @@ export default function Footer() {
                 href={siteConfig.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-igni-mint transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igni-mint/40 rounded-sm"
+                className="w-11 h-11 flex items-center justify-center rounded-full text-white/50 hover:text-igni-mint hover:bg-white/8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igni-mint/40"
                 aria-label="Igniwave on GitHub"
               >
                 <Github size={18} />
@@ -71,12 +91,12 @@ export default function Footer() {
               <h4 className="font-sans font-semibold text-xs text-igni-mint uppercase tracking-widest mb-4">
                 {category}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-1">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-sans text-white/65 hover:text-white text-sm transition-colors focus-visible:outline-none focus-visible:text-white"
+                      className="block font-sans text-white/65 hover:text-white text-sm transition-colors focus-visible:outline-none focus-visible:text-white py-1.5"
                     >
                       {link.label}
                     </Link>

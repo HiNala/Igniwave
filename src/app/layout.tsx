@@ -1,6 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import type React from "react";
 import { displayFont, sansFont, monoFont } from "@/styles/fonts";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#1B3A2D",
+};
 
 export const metadata: Metadata = {
   title: "Igniwave | Wellness Intelligence, On Your Terms",

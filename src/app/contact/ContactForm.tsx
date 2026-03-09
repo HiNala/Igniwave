@@ -92,7 +92,8 @@ export default function ContactForm() {
           placeholder="Your name"
           required
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl border border-igni-mint/40 bg-white font-sans text-igni-charcoal placeholder:text-igni-slate/50 focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage text-[15px] disabled:opacity-60 transition-colors"
+          autoComplete="name"
+          className="w-full px-4 py-3 rounded-xl border border-igni-mint/40 bg-white font-sans text-igni-charcoal placeholder:text-igni-slate/50 focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage text-base disabled:opacity-60 transition-colors"
         />
       </div>
 
@@ -108,8 +109,9 @@ export default function ContactForm() {
           placeholder="you@example.com"
           required
           autoComplete="email"
+          inputMode="email"
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl border border-igni-mint/40 bg-white font-sans text-igni-charcoal placeholder:text-igni-slate/50 focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage text-[15px] disabled:opacity-60 transition-colors"
+          className="w-full px-4 py-3 rounded-xl border border-igni-mint/40 bg-white font-sans text-igni-charcoal placeholder:text-igni-slate/50 focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage text-base disabled:opacity-60 transition-colors"
         />
       </div>
 
@@ -122,7 +124,7 @@ export default function ContactForm() {
           value={role}
           onChange={(e) => setRole(e.target.value)}
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl border border-igni-mint/40 bg-white font-sans text-igni-charcoal focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage text-[15px] disabled:opacity-60 transition-colors"
+          className="w-full px-4 py-3 rounded-xl border border-igni-mint/40 bg-white font-sans text-igni-charcoal focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage text-base disabled:opacity-60 transition-colors"
         >
           {ROLES.map((r) => (
             <option key={r.value} value={r.value}>
@@ -144,7 +146,7 @@ export default function ContactForm() {
           required
           rows={5}
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl border border-igni-mint/40 bg-white font-sans text-igni-charcoal placeholder:text-igni-slate/50 focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage text-[15px] disabled:opacity-60 transition-colors resize-y"
+          className="w-full px-4 py-3 rounded-xl border border-igni-mint/40 bg-white font-sans text-igni-charcoal placeholder:text-igni-slate/50 focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage text-base disabled:opacity-60 transition-colors resize-y"
         />
       </div>
 

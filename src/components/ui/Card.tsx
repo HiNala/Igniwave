@@ -29,7 +29,7 @@ export default function Card({
     <Tag
       className={cn(
         variants[variant],
-        hover && "cursor-pointer hover:-translate-y-1 hover:shadow-soft-lg transition-all duration-300",
+        hover && "hover:-translate-y-1 hover:shadow-soft-lg transition-all duration-300",
         className
       )}
     >

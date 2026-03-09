@@ -128,7 +128,8 @@ export default function WaitlistSection() {
                     required
                     disabled={status === "loading"}
                     aria-describedby={errorMsg ? "waitlist-error" : undefined}
-                    className="w-full px-5 py-3.5 rounded-xl border border-igni-mint/40 bg-white text-igni-charcoal placeholder:text-igni-slate/50 focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage font-sans text-[15px] disabled:opacity-60 transition-colors"
+                    inputMode="email"
+                    className="w-full px-5 py-3.5 rounded-xl border border-igni-mint/40 bg-white text-igni-charcoal placeholder:text-igni-slate/50 focus:outline-none focus:ring-2 focus:ring-igni-sage/30 focus:border-igni-sage font-sans text-base disabled:opacity-60 transition-colors"
                   />
                 </div>
 
