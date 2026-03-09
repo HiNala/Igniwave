@@ -4,6 +4,7 @@ import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import SparkleAccent from "@/components/icons/SparkleAccent";
 import TimelineIcon from "@/components/icons/features/TimelineIcon";
 import HighlightsIcon from "@/components/icons/features/HighlightsIcon";
 import SharePackIcon from "@/components/icons/features/SharePackIcon";
@@ -75,7 +76,11 @@ export default function FeaturesSection() {
   return (
     <Section bg="warm" id="features">
       <Container>
-        <AnimateIn>
+        <AnimateIn className="relative">
+          {/* Sparkle accent — top-right of heading block */}
+          <div className="absolute -top-2 right-4 lg:right-16 opacity-50 pointer-events-none" aria-hidden="true">
+            <SparkleAccent count={2} color="#E87461" className="w-10 h-9" />
+          </div>
           <SectionHeading
             eyebrow="Features"
             title="Built for Real Life"

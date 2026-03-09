@@ -3,7 +3,7 @@ import Badge from "@/components/ui/Badge";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-import HandDrawnArrow from "@/components/icons/HandDrawnArrow";
+import DottedConnector from "@/components/icons/DottedConnector";
 import HandDrawnCircle from "@/components/icons/HandDrawnCircle";
 import ConnectWearableIcon from "@/components/icons/features/ConnectWearableIcon";
 import TimelineInsightIcon from "@/components/icons/features/TimelineInsightIcon";
@@ -111,17 +111,16 @@ export default function SolutionSection() {
                 </div>
               </AnimateIn>
 
-              {/* Arrow connector — desktop only */}
+              {/* Dotted connector — desktop only */}
               {i < steps.length - 1 && (
                 <AnimateIn
                   delay={0.55 + i * 0.2}
-                  className="hidden md:flex items-center justify-center w-10 shrink-0 pt-[54px]"
+                  className="hidden md:flex items-center justify-center w-12 shrink-0 pt-[36px]"
                 >
-                  <HandDrawnArrow
-                    direction="right"
-                    color="#4A7C5C"
+                  <DottedConnector
+                    color="#A8D5BA"
                     delay={0.6 + i * 0.2}
-                    className="w-10 h-8 opacity-40"
+                    className="w-12"
                   />
                 </AnimateIn>
               )}

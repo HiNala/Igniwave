@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Twitter, Linkedin, Github } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import IgniwaveLogo from "@/components/icons/IgniwaveLogo";
+import HandDrawnHeart from "@/components/icons/HandDrawnHeart";
 
 const footerLinks: Record<string, { label: string; href: string }[]> = {
   Product: [
@@ -91,8 +92,10 @@ export default function Footer() {
           <p className="font-sans text-white/45 text-sm">
             © {new Date().getFullYear()} Igniwave Healthcare. All rights reserved.
           </p>
-          <p className="font-sans text-white/35 text-xs">
-            Made with care in the Bay Area
+          <p className="font-sans text-white/35 text-xs flex items-center gap-1.5">
+            Made with
+            <HandDrawnHeart color="#E87461" className="w-4 h-[14px]" delay={0.2} />
+            care in the Bay Area
           </p>
         </div>
       </div>

@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     "Get in touch with the Igniwave team. Whether you're a family, clinician, or potential partner, we'd love to hear from you.",
 };
 
-const faqs = [
+const faqs: { q: string; a: string }[] = [
   {
     q: "When will Igniwave be available?",
-    a: "We&rsquo;re currently building V1 and accepting early access signups. Join the waitlist for updates &mdash; we plan to onboard a small pilot group first.",
+    a: "We\u2019re currently building V1 and accepting early access signups. Join the waitlist for updates \u2014 we plan to onboard a small pilot group first.",
   },
   {
     q: "Which wearables do you support?",
@@ -28,15 +28,15 @@ const faqs = [
   },
   {
     q: "Is Igniwave HIPAA compliant?",
-    a: "V1 is a consumer wellness product under user control &mdash; not a HIPAA-covered entity. HIPAA compliance with BAA support is planned for our V2 clinical tier.",
+    a: "V1 is a consumer wellness product under user control \u2014 not a HIPAA-covered entity. HIPAA compliance with BAA support is planned for our V2 clinical tier.",
   },
   {
     q: "Can my therapist or BCBA use this?",
-    a: "Yes &mdash; you can generate a Visit Share Pack and share it with any provider as a formatted document. They receive a PDF, not a portal login. No special software required on their end.",
+    a: "Yes \u2014 you can generate a Visit Share Pack and share it with any provider as a formatted document. They receive a PDF, not a portal login. No special software required on their end.",
   },
   {
     q: "Is my data safe?",
-    a: "Your data is encrypted with keys anchored to your device &mdash; we never see unencrypted data, and we never sell any data. See our Privacy page for the full picture.",
+    a: "Your data is encrypted with keys anchored to your device \u2014 we never see unencrypted data, and we never sell any data. See our Privacy page for the full picture.",
   },
 ];
 
@@ -152,10 +152,9 @@ export default function ContactPage() {
                   <h3 className="font-sans font-bold text-[15px] text-igni-charcoal mb-2">
                     {faq.q}
                   </h3>
-                  <p
-                    className="font-sans text-sm text-igni-slate leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: faq.a }}
-                  />
+                  <p className="font-sans text-sm text-igni-slate leading-relaxed">
+                    {faq.a}
+                  </p>
                 </Card>
               </AnimateIn>
             ))}

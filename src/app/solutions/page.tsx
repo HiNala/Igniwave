@@ -31,7 +31,6 @@ const comparisonRows: { feature: string; v1: boolean | string; v2: boolean | str
   { feature: "BAA / HIPAA-Covered Tier", v1: false, v2: true },
 ];
 
-
 export default function SolutionsPage() {
   return (
     <PageLayout>
@@ -56,10 +55,12 @@ export default function SolutionsPage() {
               </div>
               <Link href="/#waitlist" className={buttonVariants({ variant: "primary", size: "md" })}>Join the Waitlist</Link>
             </AnimateIn>
-            <AnimateIn delay={0.15} className="hidden lg:flex items-center justify-center">
-              <div className="w-full rounded-3xl bg-igni-forest/5 border border-igni-mint/20 h-64 flex items-center justify-center">
-                <p className="font-display text-2xl text-igni-forest/25 text-center leading-relaxed">Wellness Timeline<br/>Visualization</p>
-              </div>
+            <AnimateIn delay={0.15} className="hidden lg:block">
+              <img
+                src="https://images.unsplash.com/photo-1575995872537-3793d29d972c?auto=format&fit=crop&w=800&q=80"
+                alt="Person reviewing health tracking data on smartwatch"
+                className="w-full h-64 object-cover rounded-3xl"
+              />
             </AnimateIn>
           </div>
         </Container>
@@ -69,10 +70,12 @@ export default function SolutionsPage() {
       <Section bg="white">
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <AnimateIn delay={0.1} className="hidden lg:flex items-center justify-center order-last lg:order-first">
-              <div className="w-full rounded-3xl bg-igni-cream border border-igni-mint/20 h-64 flex items-center justify-center">
-                <p className="font-display text-2xl text-igni-forest/25 text-center leading-relaxed">Visit Share Pack<br/>Preview</p>
-              </div>
+            <AnimateIn delay={0.1} className="hidden lg:block order-last lg:order-first">
+              <img
+                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80"
+                alt="Clinician reviewing patient wellness report"
+                className="w-full h-64 object-cover rounded-3xl"
+              />
             </AnimateIn>
             <AnimateIn>
               <span className="inline-block font-sans text-sm font-semibold uppercase tracking-widest text-igni-coral mb-4">For Clinicians &amp; Care Teams</span>
