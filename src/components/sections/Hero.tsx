@@ -146,7 +146,7 @@ export default function Hero() {
               </div>
 
               {/* Floating share pack badge */}
-              <div className="absolute -bottom-5 -right-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 w-52">
+              <div className="absolute -bottom-6 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 w-52">
                 <div className="w-10 h-10 rounded-xl bg-igni-forest flex items-center justify-center shrink-0 mt-0.5">
                   <Shield size={18} className="text-igni-mint" />
                 </div>

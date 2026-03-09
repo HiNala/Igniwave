@@ -1,4 +1,5 @@
 import { Watch, LineChart, FileText, ArrowRight } from "lucide-react";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 const steps = [
   {
@@ -35,7 +36,7 @@ export default function HowItWorks() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-2xl mb-16 lg:mb-20">
+        <AnimateIn className="max-w-2xl mb-16 lg:mb-20">
           <span className="inline-block text-igni-mint text-sm font-semibold uppercase tracking-wider mb-3">
             How It Works
           </span>
@@ -47,7 +48,7 @@ export default function HowItWorks() {
             Three steps from raw wearable data to a clinician-ready intelligence
             brief — all staying in your hands the entire time.
           </p>
-        </div>
+        </AnimateIn>
 
         {/* Steps */}
         <div className="relative">
@@ -55,8 +56,9 @@ export default function HowItWorks() {
           <div className="hidden lg:block absolute top-16 left-0 right-0 h-px bg-linear-to-r from-transparent via-igni-mint/30 to-transparent" />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-            {steps.map(({ step, icon: Icon, title, description, detail }) => (
-              <div key={step} className="relative group">
+            {steps.map(({ step, icon: Icon, title, description, detail }, i) => (
+              <AnimateIn key={step} delay={i * 0.15}>
+              <div className="relative group">
                 <div className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-igni-mint/30 rounded-2xl p-8 transition-all duration-300">
                   {/* Step number */}
                   <div className="flex items-center justify-between mb-6">
@@ -96,11 +98,13 @@ export default function HowItWorks() {
                   </div>
                 )}
               </div>
+              </AnimateIn>
             ))}
           </div>
         </div>
 
         {/* Product preview callout */}
+        <AnimateIn delay={0.2}>
         <div className="mt-16 bg-white/5 border border-igni-mint/20 rounded-3xl p-8 lg:p-12 flex flex-col lg:flex-row items-start lg:items-center gap-8">
           <div className="flex-1">
             <h3 className="text-2xl font-bold text-white mb-2">
@@ -130,6 +134,7 @@ export default function HowItWorks() {
             ))}
           </div>
         </div>
+        </AnimateIn>
       </div>
     </section>
   );

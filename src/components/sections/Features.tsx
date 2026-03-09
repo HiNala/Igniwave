@@ -1,4 +1,5 @@
 import type React from "react";
+import AnimateIn from "@/components/ui/AnimateIn";
 import {
   Database,
   TrendingUp,
@@ -73,7 +74,7 @@ export default function Features() {
     <section className="py-24 lg:py-32 bg-igni-cream">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+        <AnimateIn className="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
           <span className="inline-block text-igni-sage text-sm font-semibold uppercase tracking-wider mb-3">
             Platform Pillars
           </span>
@@ -85,13 +86,13 @@ export default function Features() {
             Built for the consumer first. Designed to be clinically useful
             without requiring your provider to onboard.
           </p>
-        </div>
+        </AnimateIn>
 
         {/* Features grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map(({ icon: Icon, title, description, tags, accent, coming }) => (
+          {features.map(({ icon: Icon, title, description, tags, accent, coming }, i) => (
+            <AnimateIn key={title} delay={(i % 3) * 0.1}>
             <div
-              key={title}
               className="bg-white rounded-2xl p-8 border border-igni-mint/20 hover:border-igni-sage/30 hover:shadow-lg transition-all duration-300 group"
             >
               <div
@@ -125,6 +126,7 @@ export default function Features() {
                 ))}
               </div>
             </div>
+            </AnimateIn>
           ))}
         </div>
       </div>
