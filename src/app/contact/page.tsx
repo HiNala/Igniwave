@@ -1,112 +1,176 @@
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import { Mail, Twitter, Linkedin, Github, MessageSquare } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Mail, MapPin, Twitter, Linkedin, Github } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import PageLayout from "@/components/layout/PageLayout";
+import PageHero from "@/components/sections/PageHero";
+import Section from "@/components/ui/Section";
+import Container from "@/components/ui/Container";
+import AnimateIn from "@/components/ui/AnimateIn";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Card from "@/components/ui/Card";
+import ContactForm from "@/app/contact/ContactForm";
 
-const contactOptions = [
+export const metadata: Metadata = {
+  title: "Contact | Igniwave",
+  description:
+    "Get in touch with the Igniwave team. Whether you're a family, clinician, or potential partner, we'd love to hear from you.",
+};
+
+const faqs = [
   {
-    icon: Mail,
-    title: "General Inquiries",
-    description: "Questions about the platform, partnerships, or press.",
-    contact: "hello@igniwave.com",
-    href: "mailto:hello@igniwave.com",
+    q: "When will Igniwave be available?",
+    a: "We&rsquo;re currently building V1 and accepting early access signups. Join the waitlist for updates &mdash; we plan to onboard a small pilot group first.",
   },
   {
-    icon: MessageSquare,
-    title: "Early Access & Waitlist",
-    description: "Interested in piloting Igniwave for yourself or your team.",
-    contact: "Join the waitlist →",
-    href: "/#waitlist",
+    q: "Which wearables do you support?",
+    a: "V1 will launch with support for Oura, Fitbit, Garmin, and Apple Health. Additional integrations are on our roadmap.",
   },
   {
-    icon: Mail,
-    title: "Privacy & Data Requests",
-    description: "Data access, correction, export, or deletion requests.",
-    contact: "privacy@igniwave.com",
-    href: "mailto:privacy@igniwave.com",
+    q: "Is Igniwave HIPAA compliant?",
+    a: "V1 is a consumer wellness product under user control &mdash; not a HIPAA-covered entity. HIPAA compliance with BAA support is planned for our V2 clinical tier.",
+  },
+  {
+    q: "Can my therapist or BCBA use this?",
+    a: "Yes &mdash; you can generate a Visit Share Pack and share it with any provider as a formatted document. They receive a PDF, not a portal login. No special software required on their end.",
+  },
+  {
+    q: "Is my data safe?",
+    a: "Your data is encrypted with keys anchored to your device &mdash; we never see unencrypted data, and we never sell any data. See our Privacy page for the full picture.",
   },
 ];
 
 export default function ContactPage() {
   return (
-    <>
-      <Header />
-      <main>
-        {/* Hero */}
-        <section className="pt-32 pb-20 gradient-forest text-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <span className="inline-block text-igni-mint text-sm font-semibold uppercase tracking-wider mb-3">
-                Contact
-              </span>
-              <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-6">
-                Get in touch
-              </h1>
-              <p className="text-white/75 text-lg leading-relaxed">
-                We&apos;re a small team building something we believe deeply in.
-                Whether you&apos;re a potential user, clinician, investor, or
-                partner — we&apos;d love to hear from you.
-              </p>
-            </div>
-          </div>
-        </section>
+    <PageLayout>
+      <PageHero
+        eyebrow="Contact"
+        title="Let's Talk"
+        subheadline="Whether you're a family looking for better wellness tools, a clinician interested in our pilot program, or a potential partner — we want to hear from you."
+      />
 
-        {/* Contact options */}
-        <section className="py-24 bg-igni-cream">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              {contactOptions.map(({ icon: Icon, title, description, contact, href }) => (
-                <a
-                  key={title}
-                  href={href}
-                  className="bg-white rounded-2xl p-8 border border-igni-mint/20 hover:border-igni-sage/40 hover:shadow-md transition-all duration-200 group block"
-                >
-                  <div className="w-12 h-12 bg-igni-forest rounded-xl flex items-center justify-center mb-5 group-hover:bg-igni-sage transition-colors duration-200">
-                    <Icon size={22} className="text-igni-mint" />
+      {/* Form + Info */}
+      <Section bg="cream">
+        <Container>
+          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+            {/* Form — wider left col */}
+            <div className="lg:col-span-3">
+              <AnimateIn>
+                <h2 className="font-display text-2xl text-igni-charcoal mb-6">
+                  Send us a message
+                </h2>
+                <ContactForm />
+              </AnimateIn>
+            </div>
+
+            {/* Contact Info — right col */}
+            <div className="lg:col-span-2">
+              <AnimateIn delay={0.15}>
+                <div className="space-y-8">
+                  <div>
+                    <h3 className="font-sans font-bold text-xs uppercase tracking-widest text-igni-coral mb-4">
+                      Contact Info
+                    </h3>
+                    <div className="space-y-4">
+                      {[
+                        { label: "General", email: "hello@igniwave.com" },
+                        { label: "Privacy & Data Requests", email: "privacy@igniwave.com" },
+                        { label: "Press", email: "press@igniwave.com" },
+                        { label: "Partnerships", email: "partners@igniwave.com" },
+                      ].map(({ label, email }) => (
+                        <div key={label} className="flex items-start gap-3">
+                          <Mail size={15} className="text-igni-sage mt-0.5 shrink-0" />
+                          <div>
+                            <p className="font-sans text-xs text-igni-slate/70 mb-0.5">{label}</p>
+                            <a
+                              href={`mailto:${email}`}
+                              className="font-sans text-sm text-igni-forest font-medium hover:underline"
+                            >
+                              {email}
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                      <div className="flex items-start gap-3">
+                        <MapPin size={15} className="text-igni-sage mt-0.5 shrink-0" />
+                        <div>
+                          <p className="font-sans text-xs text-igni-slate/70 mb-0.5">Location</p>
+                          <p className="font-sans text-sm text-igni-charcoal">Bay Area, California</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold text-igni-charcoal mb-2">
-                    {title}
-                  </h3>
-                  <p className="text-igni-slate text-sm leading-relaxed mb-4">
-                    {description}
-                  </p>
-                  <span className="text-igni-sage font-medium text-sm">
-                    {contact}
-                  </span>
-                </a>
-              ))}
-            </div>
 
-            {/* Social links */}
-            <div className="bg-igni-forest rounded-3xl p-10 text-white text-center">
-              <h2 className="text-2xl font-bold mb-2">Follow our journey</h2>
-              <p className="text-white/65 mb-8">
-                Stay up to date on product updates, health data insights, and
-                Igniwave news.
-              </p>
-              <div className="flex items-center justify-center gap-6">
-                {[
-                  { icon: Twitter, href: siteConfig.social.twitter, label: "Twitter" },
-                  { icon: Linkedin, href: siteConfig.social.linkedin, label: "LinkedIn" },
-                  { icon: Github, href: siteConfig.social.github, label: "GitHub" },
-                ].map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/70 hover:text-igni-mint transition-colors duration-200"
-                  >
-                    <Icon size={20} />
-                    <span className="text-sm font-medium">{label}</span>
-                  </a>
-                ))}
-              </div>
+                  <div>
+                    <h3 className="font-sans font-bold text-xs uppercase tracking-widest text-igni-coral mb-4">
+                      Follow Us
+                    </h3>
+                    <div className="flex items-center gap-3">
+                      {[
+                        { icon: Twitter, href: siteConfig.social.twitter, label: "Twitter" },
+                        { icon: Linkedin, href: siteConfig.social.linkedin, label: "LinkedIn" },
+                        { icon: Github, href: siteConfig.social.github, label: "GitHub" },
+                      ].map(({ icon: Icon, href, label }) => (
+                        <a
+                          key={label}
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Igniwave on ${label}`}
+                          className="w-10 h-10 rounded-xl bg-igni-forest/5 border border-igni-mint/20 flex items-center justify-center text-igni-forest/60 hover:text-igni-forest hover:border-igni-sage/40 transition-colors"
+                        >
+                          <Icon size={16} />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl bg-igni-forest/5 border border-igni-mint/20 px-5 py-4">
+                    <p className="font-sans text-sm text-igni-slate leading-relaxed">
+                      We aim to respond within{" "}
+                      <strong className="text-igni-forest">48 hours</strong>. For urgent
+                      privacy requests, email privacy@igniwave.com directly.
+                    </p>
+                  </div>
+                </div>
+              </AnimateIn>
             </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </Container>
+      </Section>
+
+      {/* FAQ */}
+      <Section bg="white">
+        <Container size="narrow">
+          <AnimateIn>
+            <SectionHeading eyebrow="FAQ" title="Common Questions" align="center" />
+          </AnimateIn>
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <AnimateIn key={faq.q} delay={0.06 + i * 0.08}>
+                <Card variant="bordered" className="p-6">
+                  <h3 className="font-sans font-bold text-[15px] text-igni-charcoal mb-2">
+                    {faq.q}
+                  </h3>
+                  <p
+                    className="font-sans text-sm text-igni-slate leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: faq.a }}
+                  />
+                </Card>
+              </AnimateIn>
+            ))}
+          </div>
+          <AnimateIn delay={0.5}>
+            <p className="font-sans text-center text-sm text-igni-slate/60 mt-8">
+              Still have questions?{" "}
+              <Link href="/#waitlist" className="text-igni-sage hover:underline font-medium">
+                Join the waitlist
+              </Link>{" "}
+              and we&rsquo;ll reach out directly.
+            </p>
+          </AnimateIn>
+        </Container>
+      </Section>
+    </PageLayout>
   );
 }

@@ -1,178 +1,251 @@
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import { Shield, Lock, Eye, Trash2 } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import PageLayout from "@/components/layout/PageLayout";
+import PageHero from "@/components/sections/PageHero";
+import Section from "@/components/ui/Section";
+import Container from "@/components/ui/Container";
+import AnimateIn from "@/components/ui/AnimateIn";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Card from "@/components/ui/Card";
 
-const principles = [
+export const metadata: Metadata = {
+  title: "Privacy | Igniwave — Your Data, Your Control",
+  description:
+    "Learn how Igniwave protects your wellness data with device-anchored encryption, user-controlled vaults, and patient-directed sharing.",
+};
+
+const pillars = [
   {
-    icon: Shield,
-    title: "You are the data controller",
-    description:
-      "Igniwave is designed so that you — not us, not your clinic — are the legal data controller for your wellness data. We process data only on your instruction.",
+    number: "01",
+    title: "Device-Anchored Encryption",
+    summary: "Keys are generated on your device. The server stores ciphertext only.",
+    detail:
+      "Your encryption keys are derived from a secret that never leaves your device. All wellness data — metrics, notes, check-ins — is encrypted client-side before it reaches our servers. We store ciphertext. Even in the event of a server breach, your raw health data is not exposed.",
   },
   {
-    icon: Lock,
-    title: "Encryption by default",
-    description:
-      "Your data vault is encrypted at rest. Keys are generated on your device. The server stores ciphertext only — we cannot read your raw health data.",
+    number: "02",
+    title: "User-Initiated Sharing Only",
+    summary: "Nothing leaves your vault without an explicit action from you.",
+    detail:
+      "Every share is an active choice you make. When you generate a Visit Share Pack, a consent artifact is created locally with a defined scope (which data), recipient (who), time window (how long), and expiration. You can revoke access at any time, and we log every consent event.",
   },
   {
-    icon: Eye,
-    title: "Sharing is always user-initiated",
-    description:
-      "Nothing leaves your vault without an explicit action from you. Every share creates a consent artifact with a defined scope, recipient, and expiry.",
+    number: "03",
+    title: "No Provider Lock-In",
+    summary: "We are not a HIPAA-covered entity in V1. Your data doesn't flow to a provider portal.",
+    detail:
+      "Igniwave V1 operates as a consumer wellness platform under your control. Providers receive patient-generated exports (PDFs, formatted documents) — they do not log into a portal or receive direct data access. There is no EHR writeback, no billing workflow, and no clinic admin account in V1.",
   },
   {
-    icon: Trash2,
-    title: "Delete anytime, completely",
-    description:
-      "You can delete your account and all associated data at any time. We provide a complete data export before deletion. No retention after your request.",
+    number: "04",
+    title: "Full Audit Trail",
+    summary: "Every consent event, share, and revocation is logged and visible to you.",
+    detail:
+      "We maintain a complete audit log of all data access events: what was shared, when, with whom, and for how long. This log is available to you at any time. If you delete your account, the audit log is deleted with it. We do not retain logs after account deletion.",
+  },
+];
+
+type DataRow = { category: string; items: string[]; emphasis?: boolean };
+const dataTable: DataRow[] = [
+  {
+    category: "Data We Store",
+    items: [
+      "Encrypted wellness metrics from your wearable (sleep, activity, HRV, resting HR)",
+      "Encrypted personal notes and check-in responses",
+      "Consent records and share event logs",
+      "Your account email address (encrypted at rest)",
+    ],
+  },
+  {
+    category: "Data We Don't Store",
+    items: [
+      "Raw audio recordings (transcription, if used, happens on-device)",
+      "Biometric identifiers (fingerprint, Face ID, iris scan)",
+      "Insurance information or diagnosis codes",
+      "Your physical location or GPS data",
+    ],
+  },
+  {
+    category: "Data We Never Collect",
+    items: [
+      "Advertising IDs or behavioral ad-targeting profiles",
+      "Browsing history or cross-site tracking",
+      "Third-party tracking pixels or SDKs in the product app",
+      "Social graph data",
+    ],
+  },
+  {
+    category: "Data We Never Sell",
+    items: [
+      "All of the above. Without exception.",
+      "We have no data monetization model. You are not the product.",
+    ],
+    emphasis: true,
   },
 ];
 
 export default function PrivacyPage() {
   return (
-    <>
-      <Header />
-      <main>
-        {/* Hero */}
-        <section className="pt-32 pb-20 gradient-forest text-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <span className="inline-block text-igni-mint text-sm font-semibold uppercase tracking-wider mb-3">
-                Privacy & Data
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Privacy is the product,{" "}
-                <span className="text-igni-mint">not the policy</span>
-              </h1>
-              <p className="text-white/75 text-lg leading-relaxed max-w-2xl">
-                At Igniwave, privacy isn&apos;t a checkbox — it&apos;s the core
-                architectural constraint that every design decision is evaluated
-                against. Here&apos;s exactly what that means for your data.
-              </p>
-            </div>
-          </div>
-        </section>
+    <PageLayout>
+      <PageHero
+        eyebrow="Privacy"
+        title="Your Data. Your Vault. Your Rules."
+      />
 
-        {/* Core Principles */}
-        <section className="py-24 bg-igni-cream">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center max-w-xl mx-auto mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold text-igni-charcoal">
-                Our four privacy commitments
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {principles.map(({ icon: Icon, title, description }) => (
-                <div
-                  key={title}
-                  className="bg-white rounded-2xl p-8 border border-igni-mint/20"
-                >
-                  <div className="w-12 h-12 bg-igni-forest rounded-xl flex items-center justify-center mb-5">
-                    <Icon size={22} className="text-igni-mint" />
-                  </div>
-                  <h3 className="text-xl font-bold text-igni-charcoal mb-3">
-                    {title}
+      {/* Philosophy */}
+      <Section bg="cream">
+        <Container size="narrow">
+          <AnimateIn>
+            <SectionHeading
+              eyebrow="Privacy Philosophy"
+              title="Privacy is the Product, Not the Policy"
+              align="center"
+              accent
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <p className="font-sans text-lg text-igni-slate leading-relaxed max-w-3xl mx-auto text-center">
+              Igniwave was designed from day one around a fundamental principle: your health data
+              belongs to you. We don&rsquo;t monetize it, we don&rsquo;t sell it, and we never
+              see the unencrypted version. Privacy isn&rsquo;t a feature we added — it&rsquo;s
+              the architectural constraint that every design decision is evaluated against.
+            </p>
+          </AnimateIn>
+        </Container>
+      </Section>
+
+      {/* 4 Pillars expanded */}
+      <Section bg="white">
+        <Container>
+          <AnimateIn>
+            <SectionHeading
+              eyebrow="How We Protect Your Data"
+              title="Four Commitments, Built Into Every Layer"
+              align="center"
+            />
+          </AnimateIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {pillars.map((pillar, i) => (
+              <AnimateIn key={pillar.title} delay={0.08 + i * 0.1}>
+                <Card variant="elevated" className="h-full p-7 flex flex-col gap-3">
+                  <span className="font-mono text-sm text-igni-coral/60 font-medium">{pillar.number}</span>
+                  <h3 className="font-sans font-bold text-lg text-igni-charcoal leading-snug">
+                    {pillar.title}
                   </h3>
-                  <p className="text-igni-slate leading-relaxed">{description}</p>
+                  <p className="font-sans text-sm font-semibold text-igni-forest">{pillar.summary}</p>
+                  <p className="font-sans text-[14px] text-igni-slate leading-relaxed">{pillar.detail}</p>
+                </Card>
+              </AnimateIn>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Data Collection Table */}
+      <Section bg="warm">
+        <Container>
+          <AnimateIn>
+            <SectionHeading
+              eyebrow="Data Transparency"
+              title="What We Collect and What We Don’t"
+              align="center"
+            />
+          </AnimateIn>
+          <div className="space-y-4">
+            {dataTable.map((row, i) => (
+              <AnimateIn key={row.category} delay={0.08 + i * 0.1}>
+                <div className={`rounded-2xl border p-6 md:p-8 ${
+                  row.emphasis
+                    ? "bg-igni-forest text-white border-igni-forest"
+                    : "bg-white border-igni-mint/20"
+                }`}>
+                  <h3 className={`font-sans font-bold text-base mb-3 ${
+                    row.emphasis ? "text-igni-mint" : "text-igni-charcoal"
+                  }`}>
+                    {row.category}
+                  </h3>
+                  <ul className="space-y-2">
+                    {row.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5">
+                        <span className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${
+                          row.emphasis ? "bg-igni-coral" : "bg-igni-sage"
+                        }`} />
+                        <span className={`font-sans text-[14px] leading-relaxed ${
+                          row.emphasis ? "text-white/80" : "text-igni-slate"
+                        }`}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </div>
+              </AnimateIn>
+            ))}
           </div>
-        </section>
+        </Container>
+      </Section>
 
-        {/* V1 Non-HIPAA Statement */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <div className="bg-igni-forest rounded-3xl p-10 text-white">
-              <h2 className="text-2xl font-bold mb-4">
-                V1 Compliance Posture: Non-HIPAA Consumer Wellness
-              </h2>
-              <p className="text-white/75 leading-relaxed mb-4">
-                Igniwave V1 is a consumer-controlled wellness platform. It is
-                not a HIPAA-covered entity. You are the customer and data
-                controller — not a clinic. We do not act as a Business Associate
-                processing Protected Health Information on behalf of a covered
-                entity.
+      {/* V1 Compliance Statement */}
+      <Section bg="white">
+        <Container size="narrow">
+          <AnimateIn>
+            <SectionHeading
+              eyebrow="V1 Compliance Posture"
+              title="Non-HIPAA Consumer Wellness Platform"
+              align="center"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <div className="rounded-2xl bg-igni-forest text-white p-8 md:p-10 space-y-4">
+              <p className="font-sans text-white/80 leading-relaxed">
+                <strong className="text-white">Igniwave V1 operates as a consumer wellness platform</strong>{" "}
+                under the user&rsquo;s control. We are not a HIPAA-covered entity in V1 because
+                we do not process Protected Health Information on behalf of healthcare providers.
               </p>
-              <p className="text-white/75 leading-relaxed mb-4">
-                Sharing is always user-initiated via exported documents or
-                expiring links. We have no EHR writeback, no billing or claims
-                workflows, and no clinic admin portal.
+              <p className="font-sans text-white/80 leading-relaxed">
+                We handle Patient-Generated Health Data (PGHD) under the user&rsquo;s direction.
+                Sharing is always user-initiated via exported documents or expiring links. We have
+                no EHR writeback, no billing or claims workflows, and no clinic admin portal.
               </p>
-              <p className="text-white/60 text-sm">
-                A HIPAA-ready V2 clinical tier with BAAs, org tenancy, and EHR
-                integrations is planned for a future release.
+              <p className="font-sans text-white/80 leading-relaxed">
+                <strong className="text-igni-mint">Igniwave is not a medical device</strong> and
+                does not provide medical advice, diagnosis, or treatment. The wellness data and
+                insights it surfaces are for informational and conversational purposes only.
+              </p>
+              <p className="font-sans text-white/55 text-sm leading-relaxed">
+                A HIPAA-ready V2 clinical tier with BAAs, org tenancy, and EHR integrations is
+                planned for a future release. See our roadmap on the{" "}
+                <Link href="/about" className="text-igni-mint hover:underline">About page</Link>.
               </p>
             </div>
-          </div>
-        </section>
+          </AnimateIn>
+        </Container>
+      </Section>
 
-        {/* Privacy Policy Placeholder */}
-        <section className="py-20 bg-igni-cream">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-igni-charcoal mb-6">
-              Privacy Policy
+      {/* Privacy Policy Link */}
+      <Section bg="cream" className="text-center">
+        <Container size="narrow">
+          <AnimateIn>
+            <h2 className="font-display text-2xl md:text-3xl text-igni-forest mb-4">
+              Full Privacy Policy
             </h2>
-            <div className="prose prose-slate max-w-none">
-              <p className="text-igni-slate leading-relaxed mb-4">
-                <strong className="text-igni-charcoal">
-                  Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-                </strong>
-              </p>
-              <p className="text-igni-slate leading-relaxed mb-4">
-                This Privacy Policy describes how Igniwave (&ldquo;we,&rdquo;
-                &ldquo;our,&rdquo; or &ldquo;us&rdquo;) collects, uses, and
-                shares information when you use our wellness intelligence
-                platform.
-              </p>
-              <p className="text-igni-slate leading-relaxed mb-4">
-                <strong className="text-igni-charcoal">
-                  Data We Collect:
-                </strong>{" "}
-                Wearable device metrics (sleep, activity, heart rate, HRV)
-                synchronized via OAuth from supported vendors; account
-                information (email, profile); user-generated content (notes,
-                check-in responses, share pack configurations).
-              </p>
-              <p className="text-igni-slate leading-relaxed mb-4">
-                <strong className="text-igni-charcoal">
-                  How We Use Your Data:
-                </strong>{" "}
-                To provide the Igniwave platform features described in our
-                service; to generate insights and the Wellness Continuity
-                Timeline; to create Visit Share Packs at your direction. We do
-                not sell your data. We do not share your data with third parties
-                except as required by law or directed by you.
-              </p>
-              <p className="text-igni-slate leading-relaxed mb-4">
-                <strong className="text-igni-charcoal">Your Rights:</strong>{" "}
-                You have the right to access, correct, export, and delete your
-                data at any time. Contact{" "}
-                <a
-                  href="mailto:privacy@igniwave.com"
-                  className="text-igni-sage hover:underline"
-                >
-                  privacy@igniwave.com
-                </a>{" "}
-                with any privacy requests.
-              </p>
-              <p className="text-igni-slate leading-relaxed">
-                <strong className="text-igni-charcoal">Contact:</strong> For
-                questions about this policy, email{" "}
-                <a
-                  href="mailto:privacy@igniwave.com"
-                  className="text-igni-sage hover:underline"
-                >
-                  privacy@igniwave.com
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+            <p className="font-sans text-igni-slate leading-relaxed mb-6">
+              Our formal Privacy Policy and Terms of Service will be published before our public
+              launch. The commitments on this page represent our binding design principles — the
+              policy will formalize them in legal language.
+            </p>
+            <p className="font-sans text-igni-slate/70 text-sm">
+              Questions about privacy?{" "}
+              <a href="mailto:privacy@igniwave.com" className="text-igni-sage hover:underline font-medium">
+                privacy@igniwave.com
+              </a>
+              {" "}&mdash;{" "}
+              or use the{" "}
+              <Link href="/contact" className="text-igni-sage hover:underline font-medium">
+                contact form
+              </Link>.
+            </p>
+          </AnimateIn>
+        </Container>
+      </Section>
+    </PageLayout>
   );
 }

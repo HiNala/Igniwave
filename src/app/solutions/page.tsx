@@ -1,171 +1,168 @@
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import { Watch, FileText, Brain, Globe, ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { CheckCircle, XCircle } from "lucide-react";
+import PageLayout from "@/components/layout/PageLayout";
+import PageHero from "@/components/sections/PageHero";
+import Section from "@/components/ui/Section";
+import Container from "@/components/ui/Container";
+import AnimateIn from "@/components/ui/AnimateIn";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Card from "@/components/ui/Card";
+import Badge from "@/components/ui/Badge";
+import { buttonVariants } from "@/components/ui/Button";
 
-const solutions = [
-  {
-    icon: Watch,
-    title: "Wearable Intelligence",
-    subtitle: "Connect. Sync. Understand.",
-    description:
-      "Link your Oura, Fitbit, Garmin, or Apple Health account. We backfill 30 days of history and sync daily — normalizing sleep, activity, HRV, and resting HR into a unified timeline.",
-    features: [
-      "OAuth-secured connection",
-      "30-day historical backfill",
-      "Daily incremental sync",
-      "Sleep, HRV, activity, resting HR",
-      "Data quality: dedupe + gap handling",
-    ],
-    status: "Available in V1",
-    statusColor: "text-igni-sage bg-igni-mint/20",
-  },
-  {
-    icon: Brain,
-    title: "Wellness Continuity Timeline",
-    subtitle: "Your story, clearly told.",
-    description:
-      "A fused, day-by-day view of all your signals with rule-based detectors that surface meaningful changes. Sleep debt streaks, HRV dips, activity drops — all explained in plain language.",
-    features: [
-      "30-day unified timeline view",
-      "Rule-based insight detectors",
-      "Explainable provenance for every insight",
-      "Sleep, HRV, activity, HR baselines",
-      "Cross-signal correlation highlights",
-    ],
-    status: "Available in V1",
-    statusColor: "text-igni-sage bg-igni-mint/20",
-  },
-  {
-    icon: FileText,
-    title: "Visit Share Pack",
-    subtitle: "Your data, your terms, your clinician.",
-    description:
-      "Generate a consented, clinician-ready PDF summary in seconds. Choose what to include, set an expiry, and deliver it via download or share link. Revoke access anytime.",
-    features: [
-      "One-tap PDF export",
-      "Consent artifact stored locally",
-      "Configurable time window (7/14/30 days)",
-      "Category toggles",
-      "Revocable share links (Phase 3)",
-    ],
-    status: "Available in V1",
-    statusColor: "text-igni-sage bg-igni-mint/20",
-  },
-  {
-    icon: Globe,
-    title: "Care Circle Copilot Chat",
-    subtitle: "Multilingual. Role-aware. Timeline-grounded.",
-    description:
-      "Invite family, caregivers, or providers to a shared chat grounded in your timeline. Each member chooses their language. AI summarizes your last 30 days, drafts visit questions, and explains trends.",
-    features: [
-      "Multi-party chat threads",
-      "Inline multilingual translation",
-      "Timeline-grounded AI responses",
-      "Role-aware access controls",
-      "No autonomous diagnosis",
-    ],
-    status: "Coming in V2",
-    statusColor: "text-igni-coral bg-igni-coral/10",
-  },
+export const metadata: Metadata = {
+  title: "Solutions | Igniwave — Wellness Intelligence Platform",
+  description:
+    "Explore how Igniwave helps individuals, families, and care teams with unified wellness timelines, smart highlights, and patient-directed sharing.",
+};
+
+const comparisonRows: { feature: string; v1: boolean | string; v2: boolean | string }[] = [
+  { feature: "Connect Wearable (Oura, Fitbit, Garmin, Apple Health)", v1: true, v2: true },
+  { feature: "30-Day Wellness Continuity Timeline", v1: true, v2: true },
+  { feature: "Smart Highlights & Anomaly Detection", v1: true, v2: true },
+  { feature: "Visit Share Pack (PDF Export)", v1: true, v2: "Enhanced" },
+  { feature: "Daily Check-In Prompts", v1: false, v2: true },
+  { feature: "Personal Narrative Notes", v1: false, v2: true },
+  { feature: "Care Circle Collaboration", v1: false, v2: true },
+  { feature: "Multilingual Care Chat (AI-assisted)", v1: false, v2: true },
+  { feature: "Clinical Portal / Provider Login", v1: false, v2: true },
+  { feature: "HL7 FHIR / EHR Integration", v1: false, v2: true },
+  { feature: "BAA / HIPAA-Covered Tier", v1: false, v2: true },
 ];
+
 
 export default function SolutionsPage() {
   return (
-    <>
-      <Header />
-      <main>
-        {/* Hero */}
-        <section className="pt-32 pb-20 gradient-forest text-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <span className="inline-block text-igni-mint text-sm font-semibold uppercase tracking-wider mb-3">
-                Platform Solutions
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                One platform.{" "}
-                <span className="text-igni-mint">Every layer of your health.</span>
-              </h1>
-              <p className="text-white/75 text-lg leading-relaxed max-w-2xl">
-                From wearable sync to clinician-ready exports, Igniwave is built
-                to handle the full lifecycle of consumer health data — with
-                privacy woven into every step.
-              </p>
+    <PageLayout>
+      <PageHero
+        eyebrow="Solutions"
+        title="Intelligence That Works for Everyone"
+        titleHighlight="for Everyone"
+        subheadline="Whether you&rsquo;re tracking your own wellness, supporting a loved one, or sharing context with a care team — Igniwave adapts to your needs."
+      />
+
+      {/* For Individuals & Families */}
+      <Section bg="cream">
+        <Container>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <AnimateIn>
+              <span className="inline-block font-sans text-sm font-semibold uppercase tracking-widest text-igni-coral mb-4">For You &amp; Your Family</span>
+              <h2 className="font-display text-3xl md:text-4xl text-igni-charcoal leading-tight mb-6">Your 30-day wellness story, finally in one place</h2>
+              <div className="space-y-4 mb-8">
+                {["Connect your wearable in minutes with a secure OAuth flow","See 30 days of unified sleep, activity, and heart rate data","Get plain-language highlights on what changed and why it matters","Generate a Visit Share Pack before your next appointment — in seconds","Share context with family members in your care circle"].map((item) => (
+                  <div key={item} className="flex items-start gap-3"><CheckCircle size={18} className="text-igni-sage mt-0.5 shrink-0" /><span className="font-sans text-[15px] text-igni-slate leading-relaxed">{item}</span></div>
+                ))}
+              </div>
+              <Link href="/#waitlist" className={buttonVariants({ variant: "primary", size: "md" })}>Join the Waitlist</Link>
+            </AnimateIn>
+            <AnimateIn delay={0.15} className="hidden lg:flex items-center justify-center">
+              <div className="w-full rounded-3xl bg-igni-forest/5 border border-igni-mint/20 h-64 flex items-center justify-center">
+                <p className="font-display text-2xl text-igni-forest/25 text-center leading-relaxed">Wellness Timeline<br/>Visualization</p>
+              </div>
+            </AnimateIn>
+          </div>
+        </Container>
+      </Section>
+
+      {/* For Clinicians */}
+      <Section bg="white">
+        <Container>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <AnimateIn delay={0.1} className="hidden lg:flex items-center justify-center order-last lg:order-first">
+              <div className="w-full rounded-3xl bg-igni-cream border border-igni-mint/20 h-64 flex items-center justify-center">
+                <p className="font-display text-2xl text-igni-forest/25 text-center leading-relaxed">Visit Share Pack<br/>Preview</p>
+              </div>
+            </AnimateIn>
+            <AnimateIn>
+              <span className="inline-block font-sans text-sm font-semibold uppercase tracking-widest text-igni-coral mb-4">For Clinicians &amp; Care Teams</span>
+              <h2 className="font-display text-3xl md:text-4xl text-igni-charcoal leading-tight mb-6">Patient context before the visit, not after</h2>
+              <div className="space-y-4 mb-6">
+                {["Receive patient-generated context formatted for a clinical conversation","See time-bounded wellness snapshots — not raw data dumps","Understand patterns between visits that a 5-minute window can’t reveal","All sharing is patient-directed with explicit, revocable consent"].map((item) => (
+                  <div key={item} className="flex items-start gap-3"><CheckCircle size={18} className="text-igni-sage mt-0.5 shrink-0" /><span className="font-sans text-[15px] text-igni-slate leading-relaxed">{item}</span></div>
+                ))}
+              </div>
+              <div className="rounded-xl bg-igni-cream border border-igni-mint/25 px-5 py-4 mb-6">
+                <p className="font-sans text-sm text-igni-slate/80 leading-relaxed"><strong className="text-igni-forest">V1 note:</strong> Igniwave V1 is a consumer tool. Providers receive patient-generated exports — they don&rsquo;t log in to a portal. A clinical tier is planned for V2.</p>
+              </div>
+              <Link href="/contact" className={buttonVariants({ variant: "secondary", size: "md" })}>Apply for the Pilot Program</Link>
+            </AnimateIn>
+          </div>
+        </Container>
+      </Section>
+
+      {/* For ABA / Behavioral Health */}
+      <Section bg="warm">
+        <Container>
+          <AnimateIn>
+            <SectionHeading eyebrow="Behavioral Health" title="Purpose-Built for Families Managing Complex Care" align="center" />
+          </AnimateIn>
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            <AnimateIn delay={0.1}>
+              <div className="space-y-5">
+                <p className="font-sans text-lg text-igni-slate leading-relaxed">Families managing autism care, sensory processing, or behavioral health face extreme fragmentation. Multiple therapists, BCBAs, SLPs, and OTs — none seeing the full picture.</p>
+                <p className="font-sans text-[15px] text-igni-slate leading-relaxed">Parent and caregiver observations are the richest data source in behavioral health — but the hardest to format, share, and preserve across the care team. Igniwave unifies these signals and gives families a voice in the care conversation.</p>
+              </div>
+            </AnimateIn>
+            <AnimateIn delay={0.15}>
+              <div className="space-y-4">
+                {[{title:"Incident Narratives + Biometric Context",desc:"Link behavioral observations directly to sleep deprivation, HRV shifts, or activity patterns on the same timeline."},{title:"Sleep & Behavior Correlation Highlights",desc:"Surface connections between poor sleep and next-day behavioral events that are otherwise invisible to the clinical team."},{title:"Insurance-Ready Visit Share Packs",desc:"Generate formatted summaries that include the temporal context most relevant for authorization and progress notes."}].map((item) => (
+                  <Card key={item.title} variant="elevated" className="p-5">
+                    <h3 className="font-sans font-bold text-[15px] text-igni-charcoal mb-1.5">{item.title}</h3>
+                    <p className="font-sans text-sm text-igni-slate leading-relaxed">{item.desc}</p>
+                  </Card>
+                ))}
+              </div>
+            </AnimateIn>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Comparison Table */}
+      <Section bg="white">
+        <Container>
+          <AnimateIn>
+            <SectionHeading eyebrow="Feature Roadmap" title="V1 vs V2 — What’s Available Now and What’s Coming" align="center" />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <div className="overflow-x-auto rounded-2xl border border-igni-mint/20">
+              <table className="w-full font-sans text-sm">
+                <thead>
+                  <tr className="bg-igni-forest text-white">
+                    <th className="text-left px-6 py-4 font-semibold rounded-tl-2xl">Feature</th>
+                    <th className="text-center px-6 py-4 font-semibold w-36"><span className="flex items-center justify-center gap-2"><Badge variant="success">V1</Badge>Available</span></th>
+                    <th className="text-center px-6 py-4 font-semibold w-36 rounded-tr-2xl"><span className="flex items-center justify-center gap-2"><Badge variant="v2">V2</Badge>Planned</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, i) => (
+                    <tr key={row.feature} className={i % 2 === 0 ? "bg-white" : "bg-igni-cream/40"}>
+                      <td className="px-6 py-3.5 text-igni-charcoal">{row.feature}</td>
+                      <td className="px-6 py-3.5 text-center">
+                        {row.v1 === true ? <CheckCircle size={18} className="text-igni-sage mx-auto" /> : typeof row.v1 === "string" ? <span className="text-igni-sage font-medium text-xs">{row.v1}</span> : <XCircle size={18} className="text-igni-slate/25 mx-auto" />}
+                      </td>
+                      <td className="px-6 py-3.5 text-center">
+                        {row.v2 === true ? <CheckCircle size={18} className="text-igni-sage mx-auto" /> : typeof row.v2 === "string" ? <span className="text-igni-sage font-medium text-xs">{row.v2}</span> : <XCircle size={18} className="text-igni-slate/25 mx-auto" />}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </div>
-        </section>
+          </AnimateIn>
+        </Container>
+      </Section>
 
-        {/* Solutions */}
-        <section className="py-24 bg-igni-cream">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-10">
-            {solutions.map(
-              ({ icon: Icon, title, subtitle, description, features, status, statusColor }) => (
-                <div
-                  key={title}
-                  className="bg-white rounded-3xl p-8 lg:p-12 border border-igni-mint/20 grid lg:grid-cols-5 gap-8 lg:gap-12"
-                >
-                  <div className="lg:col-span-3">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-igni-forest rounded-xl flex items-center justify-center shrink-0">
-                        <Icon size={22} className="text-igni-mint" />
-                      </div>
-                      <div>
-                        <h2 className="text-xl font-bold text-igni-charcoal leading-tight">
-                          {title}
-                        </h2>
-                        <p className="text-igni-sage text-sm font-medium">
-                          {subtitle}
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-igni-slate leading-relaxed mb-4">
-                      {description}
-                    </p>
-                    <span
-                      className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${statusColor}`}
-                    >
-                      {status}
-                    </span>
-                  </div>
-                  <div className="lg:col-span-2">
-                    <p className="text-igni-charcoal text-sm font-semibold uppercase tracking-wide mb-4">
-                      Capabilities
-                    </p>
-                    <ul className="space-y-2.5">
-                      {features.map((f) => (
-                        <li key={f} className="flex items-start gap-2.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-igni-sage mt-1.5 shrink-0" />
-                          <span className="text-igni-slate text-sm">{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-20 bg-igni-forest text-white text-center">
-          <div className="max-w-2xl mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-4">
-              Ready to see it in action?
-            </h2>
-            <p className="text-white/70 mb-8">
-              Join the waitlist for early access to the V1 platform.
-            </p>
-            <Link
-              href="/#waitlist"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-igni-coral text-white font-semibold hover:bg-igni-coral/90 transition-colors duration-200"
-            >
-              Join the Waitlist
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+      {/* CTA */}
+      <Section bg="forest" className="text-center">
+        <Container size="narrow">
+          <AnimateIn>
+            <h2 className="font-display text-3xl md:text-4xl text-white mb-4">Ready to take control of your wellness data?</h2>
+            <p className="font-sans text-white/70 text-lg mb-8">Join the early access waitlist for V1.</p>
+            <Link href="/#waitlist" className={buttonVariants({ variant: "secondary", size: "lg" })}>Join the Waitlist</Link>
+          </AnimateIn>
+        </Container>
+      </Section>
+    </PageLayout>
   );
 }
