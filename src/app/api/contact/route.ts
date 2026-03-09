@@ -4,9 +4,13 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
+/** In-memory IP rate limit store. Resets on cold start — sufficient for serverless abuse protection. */
 const ipLog = new Map<string, number[]>();
+const MAX_IP_LOG_SIZE = 10_000;
 
 function isRateLimited(ip: string): boolean {
+  // Evict entire map if it grows too large (protects against memory exhaustion from unique IPs)
+  if (ipLog.size > MAX_IP_LOG_SIZE) ipLog.clear();
   const now = Date.now();
   const timestamps = (ipLog.get(ip) ?? []).filter(
     (t) => now - t < RATE_LIMIT_WINDOW_MS

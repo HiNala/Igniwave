@@ -39,7 +39,7 @@ export default function SolutionsPage() {
         eyebrow="Solutions"
         title="Intelligence That Works for Everyone"
         titleHighlight="for Everyone"
-        subheadline="Whether you&rsquo;re tracking your own wellness, supporting a loved one, or sharing context with a care team — Igniwave adapts to your needs."
+        subheadline="Whether you're tracking your own wellness, supporting a loved one, or sharing context with a care team — Igniwave adapts to your needs."
       />
 
       {/* For Individuals & Families */}

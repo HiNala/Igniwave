@@ -69,15 +69,17 @@ export default function Header() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "relative font-sans text-[15px] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igni-sage/40 rounded-sm px-0.5",
+                      "group relative font-sans text-[15px] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-igni-sage/40 rounded-sm px-0.5",
                       isActive
                         ? "text-igni-forest"
                         : "text-igni-charcoal/70 hover:text-igni-forest"
                     )}
                   >
                     {link.label}
-                    {isActive && (
+                    {isActive ? (
                       <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-igni-coral" />
+                    ) : (
+                      <span className="absolute -bottom-1 left-0 h-0.5 w-0 rounded-full bg-igni-sage/50 transition-all duration-300 group-hover:w-full" />
                     )}
                   </Link>
                 );

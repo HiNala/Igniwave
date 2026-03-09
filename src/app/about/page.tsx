@@ -180,8 +180,8 @@ export default function AboutPage() {
           <AnimateIn>
             <SectionHeading
               eyebrow="Roadmap"
-              title="Where We Are and Where We&rsquo;re Going"
-              description="We&rsquo;re honest about what&rsquo;s built, what&rsquo;s next, and what&rsquo;s further out. No vaporware."
+              title="Where We Are and Where We’re Going"
+              description="We’re honest about what’s built, what’s next, and what’s further out. No vaporware."
               align="center"
             />
           </AnimateIn>
