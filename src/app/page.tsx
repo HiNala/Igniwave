@@ -1,9 +1,9 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
-import Problem from "@/components/sections/Problem";
-import HowItWorks from "@/components/sections/HowItWorks";
-import Features from "@/components/sections/Features";
+import ProblemSection from "@/components/sections/ProblemSection";
+import SolutionSection from "@/components/sections/SolutionSection";
+import FeaturesSection from "@/components/sections/FeaturesSection";
 import Trust from "@/components/sections/Testimonials";
 import Waitlist from "@/components/sections/Waitlist";
 
@@ -13,9 +13,9 @@ export default function Home() {
       <Header />
       <main id="main-content">
         <HeroSection />
-        <Problem />
-        <HowItWorks />
-        <Features />
+        <ProblemSection />
+        <SolutionSection />
+        <FeaturesSection />
         <Trust />
         <Waitlist />
       </main>
