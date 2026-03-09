@@ -1,5 +1,6 @@
 import { Lock, ShieldCheck, UserCheck, Eye, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 const trustPillars = [
   {
@@ -33,7 +34,7 @@ export default function Trust() {
     <section className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <AnimateIn className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block text-igni-sage text-sm font-semibold uppercase tracking-wider mb-3">
             Built on Trust
           </span>
@@ -46,13 +47,13 @@ export default function Trust() {
             flows — is evaluated against one question: does this give the user
             more control, or less?
           </p>
-        </div>
+        </AnimateIn>
 
         {/* Trust pillars */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {trustPillars.map(({ icon: Icon, title, description }) => (
+          {trustPillars.map(({ icon: Icon, title, description }, i) => (
+            <AnimateIn key={title} delay={i * 0.1}>
             <div
-              key={title}
               className="bg-igni-cream rounded-2xl p-7 border border-igni-mint/20 flex flex-col gap-4"
             >
               <div className="w-11 h-11 bg-igni-forest rounded-xl flex items-center justify-center shrink-0">
@@ -67,10 +68,12 @@ export default function Trust() {
                 </p>
               </div>
             </div>
+            </AnimateIn>
           ))}
         </div>
 
         {/* Founding principle callout */}
+        <AnimateIn delay={0.15}>
         <div className="bg-igni-forest rounded-3xl p-10 lg:p-14 grid lg:grid-cols-5 gap-8 items-center">
           <div className="lg:col-span-3">
             <p className="text-igni-mint text-sm font-semibold uppercase tracking-wider mb-4">
@@ -99,6 +102,7 @@ export default function Trust() {
             </Link>
           </div>
         </div>
+        </AnimateIn>
       </div>
     </section>
   );

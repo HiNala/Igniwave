@@ -1,8 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+/** In-memory IP rate limit store. Resets on cold start — sufficient for serverless abuse protection. */
+const ipLog = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const timestamps = (ipLog.get(ip) ?? []).filter(
+    (t) => now - t < RATE_LIMIT_WINDOW_MS
+  );
+  if (timestamps.length >= RATE_LIMIT_MAX) return true;
+  ipLog.set(ip, [...timestamps, now]);
+  return false;
+}
 
 export async function POST(req: NextRequest) {
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
+
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      { status: 429 }
+    );
+  }
+
   let body: unknown;
   try {
     body = await req.json();
@@ -19,7 +46,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing or invalid email field." }, { status: 400 });
   }
 
-  const email = ((body as Record<string, string>).email).trim().toLowerCase();
+  const payload = body as Record<string, unknown>;
+
+  // Honeypot: bots fill this field, real users leave it empty
+  if (typeof payload.website === "string" && payload.website.length > 0) {
+    return NextResponse.json({ success: true }, { status: 200 });
+  }
+
+  const email = (payload.email as string).trim().toLowerCase();
 
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 422 });

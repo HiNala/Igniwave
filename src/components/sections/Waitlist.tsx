@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRight, CheckCircle, Loader2 } from "lucide-react";
+import AnimateIn from "@/components/ui/AnimateIn";
 
 export default function Waitlist() {
   const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ export default function Waitlist() {
       className="py-24 lg:py-32 bg-igni-warm"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
+        <AnimateIn className="max-w-3xl mx-auto text-center">
           <span className="inline-block text-igni-sage text-sm font-semibold uppercase tracking-wider mb-3">
             Early Access
           </span>
@@ -124,7 +125,7 @@ export default function Waitlist() {
               </div>
             ))}
           </div>
-        </div>
+        </AnimateIn>
       </div>
     </section>
   );
