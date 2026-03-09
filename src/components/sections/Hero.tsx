@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, Shield, Zap, Heart } from "lucide-react";
 import { siteConfig } from "@/config/site";

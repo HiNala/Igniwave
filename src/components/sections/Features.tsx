@@ -1,3 +1,4 @@
+import type React from "react";
 import {
   Database,
   TrendingUp,
@@ -7,7 +8,14 @@ import {
   Smartphone,
 } from "lucide-react";
 
-const features = [
+const features: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  tags: string[];
+  accent: string;
+  coming?: boolean;
+}[] = [
   {
     icon: Database,
     title: "Multimodal Data Vault",
@@ -31,6 +39,7 @@ const features = [
       "Multilingual, role-aware chat grounded in your timeline. Summarize your last 30 days, draft visit questions, or share updates with family.",
     tags: ["Multilingual", "Role-aware", "Timeline-grounded"],
     accent: "bg-igni-coral",
+    coming: true,
   },
   {
     icon: Calendar,
@@ -39,6 +48,7 @@ const features = [
       "Daily EMA check-ins, incident reports, and post-session surveys run on schedule and write directly to your timeline.",
     tags: ["EMA check-ins", "Incident logs", "Post-session surveys"],
     accent: "bg-igni-forest",
+    coming: true,
   },
   {
     icon: Lock,
@@ -79,7 +89,7 @@ export default function Features() {
 
         {/* Features grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map(({ icon: Icon, title, description, tags, accent }) => (
+          {features.map(({ icon: Icon, title, description, tags, accent, coming }) => (
             <div
               key={title}
               className="bg-white rounded-2xl p-8 border border-igni-mint/20 hover:border-igni-sage/30 hover:shadow-lg transition-all duration-300 group"
@@ -90,9 +100,16 @@ export default function Features() {
                 <Icon size={22} className="text-white" />
               </div>
 
-              <h3 className="text-lg font-bold text-igni-charcoal mb-2">
-                {title}
-              </h3>
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h3 className="text-lg font-bold text-igni-charcoal">
+                  {title}
+                </h3>
+                {coming && (
+                  <span className="shrink-0 text-xs font-semibold text-igni-coral bg-igni-coral/10 px-2.5 py-1 rounded-full">
+                    V2
+                  </span>
+                )}
+              </div>
               <p className="text-igni-slate text-sm leading-relaxed mb-5">
                 {description}
               </p>

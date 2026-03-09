@@ -1,73 +1,103 @@
-const testimonials = [
+import { Lock, ShieldCheck, UserCheck, Eye, ArrowRight } from "lucide-react";
+import Link from "next/link";
+
+const trustPillars = [
   {
-    quote:
-      "Finally, I can walk into my therapy session with actual data. My therapist and I spent 20 minutes less on 'so how have you been feeling' and got straight to what mattered.",
-    name: "Sarah M.",
-    role: "Igniwave Beta User",
-    initials: "SM",
-    color: "bg-igni-sage",
+    icon: Lock,
+    title: "End-to-End Encrypted",
+    description:
+      "Your data vault is encrypted at rest. Keys are generated on your device — the server stores ciphertext only.",
   },
   {
-    quote:
-      "My son has autism and we see three providers. Before Igniwave, each session started from scratch. Now they all see the same 30-day picture. It's changed everything.",
-    name: "Michael T.",
-    role: "Parent & Caregiver",
-    initials: "MT",
-    color: "bg-igni-coral",
+    icon: UserCheck,
+    title: "User-Controlled",
+    description:
+      "You are the data controller, not your clinic. Nothing leaves your vault without an explicit action from you.",
   },
   {
-    quote:
-      "The privacy-first approach is what sold me. I don't want my data sitting in some clinic's EHR without my consent. Igniwave flips the model — I share what I choose.",
-    name: "Dr. Priya K.",
-    role: "Behavioral Health Clinician",
-    initials: "PK",
-    color: "bg-igni-forest",
+    icon: ShieldCheck,
+    title: "Non-HIPAA V1 (Consumer Wellness)",
+    description:
+      "Igniwave V1 is a consumer wellness platform. You own your data — we are not a covered entity processing PHI.",
+  },
+  {
+    icon: Eye,
+    title: "No Data Sales. Ever.",
+    description:
+      "We will never sell, rent, or broker your health data. Revenue comes from subscriptions — not from your information.",
   },
 ];
 
-export default function Testimonials() {
+export default function Trust() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center max-w-xl mx-auto mb-16">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block text-igni-sage text-sm font-semibold uppercase tracking-wider mb-3">
-            Early Feedback
+            Built on Trust
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-igni-charcoal leading-tight">
-            Changing how people talk to their care team
+          <h2 className="text-3xl sm:text-4xl font-bold text-igni-charcoal leading-tight mb-4">
+            Your privacy isn&apos;t a feature.{" "}
+            <span className="text-igni-sage">It&apos;s the foundation.</span>
           </h2>
+          <p className="text-igni-slate text-lg leading-relaxed">
+            Every architectural decision — from key management to data sharing
+            flows — is evaluated against one question: does this give the user
+            more control, or less?
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map(({ quote, name, role, initials, color }) => (
+        {/* Trust pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {trustPillars.map(({ icon: Icon, title, description }) => (
             <div
-              key={name}
-              className="bg-igni-cream rounded-2xl p-8 border border-igni-mint/20 flex flex-col"
+              key={title}
+              className="bg-igni-cream rounded-2xl p-7 border border-igni-mint/20 flex flex-col gap-4"
             >
-              {/* Quote marks */}
-              <div className="text-igni-mint text-5xl font-serif leading-none mb-4 select-none">
-                &ldquo;
+              <div className="w-11 h-11 bg-igni-forest rounded-xl flex items-center justify-center shrink-0">
+                <Icon size={20} className="text-igni-mint" />
               </div>
-
-              <p className="text-igni-charcoal text-base leading-relaxed flex-1 mb-6">
-                {quote}
-              </p>
-
-              <div className="flex items-center gap-3">
-                <div
-                  className={`w-10 h-10 ${color} rounded-full flex items-center justify-center shrink-0`}
-                >
-                  <span className="text-white text-xs font-bold">{initials}</span>
-                </div>
-                <div>
-                  <p className="text-igni-charcoal font-semibold text-sm">
-                    {name}
-                  </p>
-                  <p className="text-igni-slate text-xs">{role}</p>
-                </div>
+              <div>
+                <h3 className="text-base font-bold text-igni-charcoal mb-1.5">
+                  {title}
+                </h3>
+                <p className="text-igni-slate text-sm leading-relaxed">
+                  {description}
+                </p>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Founding principle callout */}
+        <div className="bg-igni-forest rounded-3xl p-10 lg:p-14 grid lg:grid-cols-5 gap-8 items-center">
+          <div className="lg:col-span-3">
+            <p className="text-igni-mint text-sm font-semibold uppercase tracking-wider mb-4">
+              Founding Principle
+            </p>
+            <blockquote className="text-2xl lg:text-3xl font-bold text-white leading-snug mb-4">
+              &ldquo;The patient has the most data. They just need the right
+              tool to make it legible — and the right to decide who sees it.&rdquo;
+            </blockquote>
+            <p className="text-white/60 text-sm">
+              The belief that drives every product decision at Igniwave.
+            </p>
+          </div>
+          <div className="lg:col-span-2 flex flex-col gap-4">
+            <p className="text-white/70 text-sm leading-relaxed">
+              We&apos;re building Igniwave in public, with a small group of
+              early adopters who share this belief. Join the pilot program and
+              help shape the product.
+            </p>
+            <Link
+              href="#waitlist"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-igni-coral text-white font-semibold text-sm hover:bg-igni-coral/90 transition-colors w-fit"
+            >
+              Join the Pilot Program
+              <ArrowRight size={15} />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

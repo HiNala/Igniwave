@@ -15,18 +15,11 @@
 
   /* Typography */
   --font-sans: var(--font-inter);
-  --font-display: var(--font-cal-sans);
 }
 
 :root {
   --background: #FDF8F0;
   --foreground: #2C2C2C;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {

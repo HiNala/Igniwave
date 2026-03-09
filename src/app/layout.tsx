@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   title: "Igniwave | Wellness Intelligence Platform",
   description:
     "Privacy-first, consumer-controlled wellness intelligence. Connect your health data, see meaningful insights, share with your care team on your terms.",
-  metadataBase: new URL("https://igniwave.vercel.app"),
+  metadataBase: new URL("https://matt-site-ten.vercel.app"),
   openGraph: {
     title: "Igniwave | Wellness Intelligence Platform",
     description:
       "Privacy-first, consumer-controlled wellness intelligence. Connect your health data, see meaningful insights, share with your care team on your terms.",
-    url: "https://igniwave.vercel.app",
+    url: "https://matt-site-ten.vercel.app",
     siteName: "Igniwave",
     type: "website",
   },

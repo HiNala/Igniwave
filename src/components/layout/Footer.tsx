@@ -2,23 +2,23 @@ import Link from "next/link";
 import { Twitter, Linkedin, Github } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
-export default function Footer() {
-  const footerLinks = {
-    Product: [
-      { label: "Solutions", href: "/solutions" },
-      { label: "How It Works", href: "/#how-it-works" },
-      { label: "Join Waitlist", href: "#waitlist" },
-    ],
-    Company: [
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
-    ],
-    Legal: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
-    ],
-  };
+const footerLinks: Record<string, { label: string; href: string }[]> = {
+  Product: [
+    { label: "Solutions", href: "/solutions" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Join Waitlist", href: "#waitlist" },
+  ],
+  Company: [
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+  ],
+  Legal: [
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+  ],
+};
 
+export default function Footer() {
   return (
     <footer className="bg-igni-forest text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">

@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Wellness Intelligence, On Your Terms",
   description:
     "Privacy-first, consumer-controlled wellness intelligence platform. Connect your health data, see meaningful insights, share with your care team — on your terms.",
-  url: "https://igniwave.vercel.app",
+  url: "https://matt-site-ten.vercel.app",
   ogImage: "/og.png",
   navLinks: [
     { label: "Solutions", href: "/solutions" },

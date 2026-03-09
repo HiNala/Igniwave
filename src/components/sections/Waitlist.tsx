@@ -17,9 +17,26 @@ export default function Waitlist() {
     setStatus("loading");
     setErrorMsg("");
 
-    // Simulate API call — replace with real endpoint when ready
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus("success");
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+
+      const data = (await res.json()) as { error?: string };
+
+      if (!res.ok) {
+        setErrorMsg(data.error ?? "Something went wrong. Please try again.");
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setErrorMsg("Network error. Please check your connection and try again.");
+      setStatus("error");
+    }
   };
 
   return (
