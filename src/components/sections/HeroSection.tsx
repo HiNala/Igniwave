@@ -3,19 +3,14 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { Lock } from "lucide-react";
-import { buttonVariants } from "@/components/ui/Button";
-import Badge from "@/components/ui/Badge";
-import Container from "@/components/ui/Container";
 import HandDrawnUnderline from "@/components/icons/HandDrawnUnderline";
-import LeafAccent from "@/components/icons/LeafAccent";
-import HeroVisual from "@/components/sections/HeroVisual";
 
 function fadeUp(delay: number, prefersReducedMotion: boolean | null) {
   return {
     initial: prefersReducedMotion ? {} : { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
     transition: {
-      duration: prefersReducedMotion ? 0 : 0.6,
+      duration: prefersReducedMotion ? 0 : 0.65,
       ease: "easeOut" as const,
       delay: prefersReducedMotion ? 0 : delay,
     },
@@ -26,123 +21,90 @@ export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section
-      className="relative bg-igni-cream overflow-hidden min-h-[calc(100vh-72px)] flex items-center py-20 lg:py-0"
-    >
-      {/* Background dot texture */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(43,82,60,0.035) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+    <section className="relative min-h-[calc(100vh-72px)] overflow-hidden flex items-center">
 
-      {/* Radial center glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 55% at 72% 45%, rgba(168,213,186,0.07) 0%, transparent 65%)",
-        }}
-      />
-
-      {/* Decorative leaf — top-right corner */}
-      <div
-        className="absolute top-10 right-6 opacity-10 rotate-12 pointer-events-none hidden lg:block"
-        aria-hidden="true"
-      >
-        <LeafAccent color="#4A7C5C" size={90} flip delay={1.2} />
+      {/* ── Background photo ──────────────────────────── */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+          decoding="async"
+        />
+        {/* Left-heavy gradient so text stays readable */}
+        <div className="absolute inset-0 bg-linear-to-r from-igni-forest/92 via-igni-forest/65 to-igni-forest/15" />
+        {/* Bottom softener */}
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-igni-forest/25 to-transparent" />
       </div>
 
-      <Container className="relative z-10 w-full">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+      {/* ── Content ───────────────────────────────────── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+        <div className="max-w-2xl">
 
-          {/* ── Left column: Copy (3/5) ────────────────────── */}
-          <div className="lg:col-span-3 text-center lg:text-left">
+          {/* Eyebrow badge */}
+          <motion.div {...fadeUp(0, prefersReducedMotion)} className="mb-7">
+            <span className="inline-flex items-center gap-2 text-xs font-sans font-semibold uppercase tracking-widest text-white/65 border border-white/20 rounded-full px-3.5 py-1.5">
+              <Lock size={11} aria-hidden="true" />
+              Privacy-First Wellness
+            </span>
+          </motion.div>
 
-            {/* Badge */}
-            <motion.div {...fadeUp(0, prefersReducedMotion)}>
-              <Badge variant="default" className="mb-6 gap-1.5">
-                <Lock size={11} />
-                Privacy-First Wellness
-              </Badge>
-            </motion.div>
+          {/* Headline */}
+          <motion.h1
+            {...fadeUp(0.07, prefersReducedMotion)}
+            className="font-display text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.06] text-white text-balance"
+          >
+            Wellness Intelligence,{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10">On Your Terms</span>
+              <HandDrawnUnderline
+                color="#E87461"
+                className="absolute -bottom-1 left-0 w-full"
+                delay={0.7}
+              />
+            </span>
+          </motion.h1>
 
-            {/* Headline */}
-            <motion.h1
-              {...fadeUp(0.06, prefersReducedMotion)}
-              className="text-5xl md:text-6xl lg:text-7xl leading-[1.08] text-igni-forest text-balance"
+          {/* Subheadline */}
+          <motion.p
+            {...fadeUp(0.16, prefersReducedMotion)}
+            className="mt-7 font-sans text-lg md:text-xl text-white/68 max-w-lg leading-relaxed"
+          >
+            Connect your health data. See what matters. Share with your care
+            team — when you&apos;re ready, how you want.
+          </motion.p>
+
+          {/* CTA row */}
+          <motion.div
+            {...fadeUp(0.24, prefersReducedMotion)}
+            className="mt-9 flex flex-col sm:flex-row gap-4"
+          >
+            <Link
+              href="#waitlist"
+              className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-igni-coral text-white font-sans font-semibold text-base hover:bg-igni-coral/88 transition-colors duration-200 shadow-sm"
             >
-              Wellness Intelligence,{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">On Your Terms</span>
-                <HandDrawnUnderline
-                  color="#E87461"
-                  className="absolute -bottom-0.5 left-0 w-full"
-                  delay={0.65}
-                />
-              </span>
-            </motion.h1>
-
-            {/* Subheadline */}
-            <motion.p
-              {...fadeUp(0.14, prefersReducedMotion)}
-              className="mt-6 text-lg md:text-xl text-igni-slate max-w-xl leading-relaxed mx-auto lg:mx-0"
+              Join the Waitlist
+            </Link>
+            <Link
+              href="#how-it-works"
+              className="inline-flex items-center justify-center px-7 py-3.5 rounded-full border border-white/30 text-white font-sans font-medium text-base hover:bg-white/10 hover:border-white/50 transition-colors duration-200"
             >
-              Connect your health data. See what matters. Share with your care
-              team — when you&apos;re ready, how you want.
-            </motion.p>
+              See How It Works →
+            </Link>
+          </motion.div>
 
-            {/* CTA buttons */}
-            <motion.div
-              {...fadeUp(0.22, prefersReducedMotion)}
-              className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            >
-              <Link
-                href="#waitlist"
-                className={buttonVariants({ variant: "primary", size: "lg" })}
-              >
-                Join the Waitlist
-              </Link>
-              <Link
-                href="#how-it-works"
-                className={buttonVariants({ variant: "ghost", size: "lg" })}
-              >
-                See How It Works →
-              </Link>
-            </motion.div>
-
-            {/* Trust microcopy */}
-            <motion.p
-              {...fadeUp(0.3, prefersReducedMotion)}
-              className="mt-6 inline-flex items-center gap-2 text-sm text-igni-slate/55 justify-center lg:justify-start"
-            >
-              <Lock size={12} aria-hidden="true" />
-              End-to-end encrypted · User-controlled · No data sales
-            </motion.p>
-          </div>
-
-          {/* ── Right column: Abstract visual (2/5) ─────── */}
-          <div className="hidden lg:flex lg:col-span-2 items-center justify-center">
-            <motion.div
-              initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: prefersReducedMotion ? 0 : 0.8,
-                ease: [0.4, 0, 0.2, 1],
-                delay: prefersReducedMotion ? 0 : 0.3,
-              }}
-            >
-              <HeroVisual />
-            </motion.div>
-          </div>
+          {/* Trust microcopy */}
+          <motion.p
+            {...fadeUp(0.32, prefersReducedMotion)}
+            className="mt-7 inline-flex items-center gap-2 font-sans text-sm text-white/40"
+          >
+            <Lock size={12} aria-hidden="true" />
+            End-to-end encrypted · User-controlled · No data sales
+          </motion.p>
 
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

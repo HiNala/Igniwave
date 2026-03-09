@@ -52,6 +52,23 @@ export default function SolutionSection() {
           />
         </AnimateIn>
 
+        {/* Editorial photo strip */}
+        <AnimateIn delay={0.1} className="mb-14">
+          <div className="relative rounded-3xl overflow-hidden h-52 md:h-64">
+            <img
+              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=80"
+              alt="Care team reviewing patient health data"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-linear-to-r from-igni-forest/75 via-igni-forest/35 to-transparent" />
+            <div className="absolute inset-0 flex items-center px-8 md:px-12">
+              <p className="font-display text-xl md:text-3xl text-white max-w-sm leading-snug">
+                Your data, finally telling the full story.
+              </p>
+            </div>
+          </div>
+        </AnimateIn>
+
         {/* Desktop: 3-col flex with arrows. Mobile: vertical stack */}
         <div className="flex flex-col md:flex-row items-start gap-0">
           {steps.map((step, i) => (
