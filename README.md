@@ -1,10 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Igniwave
+
+**Privacy-First Wellness Intelligence Platform**
+
+Connect your health data. See what matters. Share on your terms.
+
+## Overview
+
+Igniwave is a consumer-controlled wellness intelligence platform that fuses wearable signals into a unified timeline, surfaces explainable insights, and generates consented Visit Share Packs for clinicians — all without becoming a HIPAA-covered entity in V1.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Deployment:** Vercel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
 # or
 yarn dev
