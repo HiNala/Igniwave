@@ -4,8 +4,9 @@ import HeroSection from "@/components/sections/HeroSection";
 import ProblemSection from "@/components/sections/ProblemSection";
 import SolutionSection from "@/components/sections/SolutionSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
-import Trust from "@/components/sections/Testimonials";
-import Waitlist from "@/components/sections/Waitlist";
+import TrustSection from "@/components/sections/TrustSection";
+import PrivacySection from "@/components/sections/PrivacySection";
+import WaitlistSection from "@/components/sections/WaitlistSection";
 
 export default function Home() {
   return (
@@ -16,8 +17,9 @@ export default function Home() {
         <ProblemSection />
         <SolutionSection />
         <FeaturesSection />
-        <Trust />
-        <Waitlist />
+        <TrustSection />
+        <PrivacySection />
+        <WaitlistSection />
       </main>
       <Footer />
     </>
